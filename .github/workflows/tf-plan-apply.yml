@@ -9,18 +9,11 @@ on:
   #   branches:
   #   - main
 
-#Special permissions required for OIDC authentication
+# Special permissions required for OIDC authentication
 permissions:
   id-token: write
   contents: read
   pull-requests: write
-
-#These environment variables are used by the terraform azure provider to setup OIDD authenticate. 
-env:
-  ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
-  ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
-  ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-  ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
 
 jobs:
   terraform-plan:
@@ -29,8 +22,18 @@ jobs:
     defaults:
       run:
         working-directory: ./infra-core
+
+    environment: production    
     env:
-      #this is needed since we are running terraform with read-only permissions
+      ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
+      ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
+      ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+      ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID }}"
+      RESOURCE_GROUP: "${{ secrets.RESOURCE_GROUP }}"
+      STORAGE_ACCOUNT: "${{ secrets.STORAGE_ACCOUNT }}"
+      CONTAINER_NAME: "${{ secrets.CONTAINER_NAME }}"
+      KEY: "${{ secrets.KEY }}"
+
       ARM_SKIP_PROVIDER_REGISTRATION: true
     outputs:
       tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
@@ -46,21 +49,9 @@ jobs:
       with:
         terraform_wrapper: false
 
-    # Login to Azure with the Azure CLI and service principal credentials
-    - uses: azure/login@v2
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Azure CLI script
-      uses: azure/cli@v2
-      with:
-        azcliversion: latest
-        inlineScript: |
-          az account show      
-
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend-config="resource_group=$RESOURCE_GROUP" -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="key=$KEY"
 
     # Checks that all Terraform configuration files adhere to a canonical format
     # Will fail the build if not

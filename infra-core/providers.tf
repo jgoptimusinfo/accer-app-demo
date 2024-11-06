@@ -1,12 +1,9 @@
 # Configure the Microsoft Azure Backend block
 terraform {
   required_version = ">= 1.9.3"
-  
+
   backend "azurerm" {
-    resource_group_name  = "state-dev"
-    storage_account_name = "statedevjg3456"
-    container_name       = "accern-tfstate"
-    key                  = "terraform.tfstate"
+
   }
 
   required_providers {
