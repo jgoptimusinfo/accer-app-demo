@@ -66,6 +66,12 @@ jobs:
     # Will fail the build if not
     - name: Terraform Validate
       run: terraform validate
+    
+    # Use TFlint to check Terraform code
+    - name: TFlint Check
+      run: |
+        curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+        tflint    
 
     # Generates an execution plan for Terraform
     # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
