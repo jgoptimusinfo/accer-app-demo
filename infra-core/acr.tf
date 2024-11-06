@@ -5,7 +5,7 @@
 ## --------------------------------------------------------
 ##  Azure Contanier Registry - ACR
 ## --------------------------------------------------------
- 
+/*  
 module "acr_main" {
   source = "../modules/container-registry"
 
@@ -37,4 +37,4 @@ module "acr_diagnostic_setting" {
   log_metrics = [
     "AllMetrics"
   ]
-}
+} */
