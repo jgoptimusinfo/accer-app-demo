@@ -2,12 +2,12 @@ name: 'Terraform Plan/Apply'
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - main
-  pull_request:
-    branches:
-    - main
+  # push:
+  #   branches:
+  #   - main
+  # pull_request:
+  #   branches:
+  #   - main
 
 #Special permissions required for OIDC authentication
 permissions:
@@ -29,7 +29,6 @@ jobs:
     defaults:
       run:
         working-directory: ./infra-core
-    environment: production
     env:
       #this is needed since we are running terraform with read-only permissions
       ARM_SKIP_PROVIDER_REGISTRATION: true

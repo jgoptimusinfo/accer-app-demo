@@ -1,7 +1,8 @@
 name: 'Terraform Unit Tests'
 
 on:
-  push:
+  workflow_dispatch:
+  # push:
 
 permissions:
   security-events: write # Needed to upload-sarif
