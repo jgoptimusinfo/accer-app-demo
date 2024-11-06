@@ -5,7 +5,7 @@
 ## --------------------------------------------------------
 ##  AKS - Module Test
 ## --------------------------------------------------------
-
+/* 
 module "aks" {
   source = "../modules/aks"
 
@@ -105,4 +105,4 @@ module "aks_diagnostic_setting" {
   log_metrics = [
     "AllMetrics"
   ]
-} 
+}  */

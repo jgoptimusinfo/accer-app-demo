@@ -139,30 +139,6 @@ variable "storage_account_config" {
 }
 
 ## ------------------------------------
-##  SQL Variable Variables
-## ------------------------------------
-
-variable "sql_config" {
-  description = "Configuration for SQL Server"
-  type = object({
-    sql_server_name    = string
-    sql_admin_username = string
-    sql_password       = string
-    server_version     = string
-    connection_policy  = string
-  })
-}
-
-variable "sql_aad_administrator_config" {
-  description = "Configuration for SQL Server AAD Administrator"
-  type = object({
-    login_username              = string
-    object_id                   = string
-    azuread_authentication_only = bool
-  })
-}
-
-## ------------------------------------
 ##  Application Gateway Variables
 ## ------------------------------------
 

@@ -1,7 +1,7 @@
 ## --------------------------------------------------------
 ##  Application Gateway - User Assigned Identity 
 ## --------------------------------------------------------
- 
+ /* 
 resource "azurerm_user_assigned_identity" "appag_umid" {
   location            = var.location
   name                = var.appag_umid_name
@@ -94,3 +94,4 @@ module "application_gateway" {
 
   depends_on = [module.vnet_main_network, module.rg_main_network, module.log_analytics_workspace]
 }
+ */

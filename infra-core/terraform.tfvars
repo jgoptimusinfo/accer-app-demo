@@ -98,24 +98,6 @@ storage_account_config = {
 }
 
 ## ------------------------------------
-##  Azure SQL Configuration
-## ------------------------------------
-
-sql_config = {
-  sql_server_name    = "accern-sql-prd-eus2-sql"
-  sql_admin_username = "sqladmin"
-  sql_password       = "hsikjdhfgiu34512@35"
-  server_version     = "12.0"
-  connection_policy  = "Default"
-}
-
-sql_aad_administrator_config = {
-  login_username              = "aadsqladmin"
-  object_id                   = "95b881f6-5390-4914-ae1f-78e2c1d3c992" # "aadsqladmin"
-  azuread_authentication_only = false
-}
-
-## ------------------------------------
 ##  Application Gateway Configuration
 ## ------------------------------------
 

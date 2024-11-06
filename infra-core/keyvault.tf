@@ -2,7 +2,7 @@
 ## --------------------------------------------------------
 ##  KeyVault - Module 
 ## --------------------------------------------------------
- 
+ /* 
 module "keyvault_main" {
   source = "../modules/keyvault"
 
@@ -111,4 +111,4 @@ resource "azurerm_key_vault_certificate" "ssl_cert" {
   }
 
   depends_on = [ time_sleep.wait_120_seconds ]
-}
+} */
