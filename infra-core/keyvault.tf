@@ -2,7 +2,7 @@
 ## --------------------------------------------------------
 ##  KeyVault - Module 
 ## --------------------------------------------------------
- 
+/*  
 module "keyvault_main" {
   source = "../modules/keyvault"
 
@@ -128,4 +128,4 @@ resource "azurerm_key_vault_access_policy" "appag_key_vault_access_policy" {
     "Get",
   ]
   depends_on = [ azurerm_user_assigned_identity.appag_umid ]
-}
+} */
