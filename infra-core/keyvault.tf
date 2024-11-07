@@ -2,7 +2,7 @@
 ## --------------------------------------------------------
 ##  KeyVault - Module 
 ## --------------------------------------------------------
- /* 
+ 
 module "keyvault_main" {
   source = "../modules/keyvault"
 
@@ -111,4 +111,21 @@ resource "azurerm_key_vault_certificate" "ssl_cert" {
   }
 
   depends_on = [ time_sleep.wait_120_seconds ]
-} */
+}
+
+resource "azurerm_user_assigned_identity" "appag_umid" {
+  location            = var.location
+  name                = var.appag_umid_name
+  resource_group_name = module.rg_main_network.name
+  depends_on = [ azurerm_key_vault_certificate.ssl_cert ]
+}
+
+resource "azurerm_key_vault_access_policy" "appag_key_vault_access_policy" {
+  key_vault_id = module.keyvault_main.id
+  object_id    = azurerm_user_assigned_identity.appag_umid.principal_id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  secret_permissions = [
+    "Get",
+  ]
+  depends_on = [ azurerm_user_assigned_identity.appag_umid ]
+}

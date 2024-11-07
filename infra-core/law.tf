@@ -2,7 +2,7 @@
 ## --------------------------------------------------------
 ##  Log analitycs Workspace - Main
 ## --------------------------------------------------------
-/* 
+ 
 module "log_analytics_workspace" {
   source = "../modules/log-workspace"
 
@@ -24,5 +24,4 @@ module "log_analytics_workspace" {
     }
   }
   tags = var.tags
-} 
- */
+}

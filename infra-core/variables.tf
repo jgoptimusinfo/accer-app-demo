@@ -85,6 +85,11 @@ variable "keyvault_config" {
   })
 }
 
+variable "appag_umid_name" {
+  description = "The name of the User Managed Identity for App Gateway"
+  type        = string
+}
+
 ## ------------------------------------
 ##  ACR Variables
 ## ------------------------------------
@@ -136,128 +141,6 @@ variable "storage_account_config" {
     account_kind                  = string
     access_tier                   = string
   })
-}
-
-## ------------------------------------
-##  Application Gateway Variables
-## ------------------------------------
-
-variable "appag_umid_name" {
-  description = "The name of the User Assigned Managed Identity for Application Gateway."
-  type        = string
-}
-
-variable "app_gateway_config" {
-  description = "Configuration for Application Gateway"
-  type = object({
-    name                = string
-    public_ip_name      = string
-    subnet_name_backend = string
-  })
-}
-
-variable "app_gateway_sku" {
-  description = "Configuration for Application Gateway SKU"
-  type = object({
-    name     = string
-    tier     = string
-    capacity = number
-  })
-}
-
-variable "app_gateway_autoscale_configuration" {
-  description = "Configuration for Application Gateway Autoscale"
-  type = object({
-    min_capacity = number
-    max_capacity = number
-  })
-}
-
-variable "waf_configuration" {
-  description = "Configuration for Web Application Firewall"
-  type = list(object({
-    enabled          = bool
-    firewall_mode    = string
-    rule_set_type    = string
-    rule_set_version = string
-  }))
-}
-
-variable "ssl_certificates_name" {
-  description = "The name of the SSL Certificate."
-  type        = string
-}
-
-variable "frontend_ports" {
-  description = "The frontend ports for the Application Gateway."
-  type = map(object({
-    name = string
-    port = number
-  }))
-  default = {}
-}
-
-variable "backend_address_pools" {
-  description = "The backend address pools for the Application Gateway."
-  type = map(object({
-    name         = string
-    ip_addresses = list(string)
-  }))
-  default = {}
-}
-
-variable "backend_http_settings" {
-  description = "The backend http settings for the Application Gateway."
-  type = map(object({
-    name                  = string
-    cookie_based_affinity = string
-    path                  = string
-    enable_https          = bool
-    port                  = number
-    request_timeout       = number
-    connection_draining = object({
-      enable_connection_draining = bool
-      drain_timeout_sec          = number
-    })
-  }))
-  default = {}
-}
-
-variable "http_listeners" {
-  description = "The http listeners for the Application Gateway."
-  type = map(object({
-    name                 = string
-    frontend_port_name   = string
-    ssl_certificate_name = optional(string, null)
-    host_name            = optional(string, null)
-  }))
-  default = {}
-}
-
-variable "redirect_configuration" {
-  description = "The redirect configuration for the Application Gateway."
-  type = map(object({
-    name                 = string
-    redirect_type        = string
-    target_listener_name = string
-    include_path         = bool
-    include_query_string = bool
-  }))
-  default = {}
-}
-
-variable "request_routing_rules" {
-  description = "The request routing rules for the Application Gateway."
-  type = map(object({
-    name                        = string
-    rule_type                   = string
-    http_listener_name          = string
-    backend_address_pool_name   = optional(string, null)
-    backend_http_settings_name  = optional(string, null)
-    redirect_configuration_name = optional(string, null)
-    priority                    = number
-  }))
-  default = {}
 }
 
 ## ------------------------------------
@@ -325,43 +208,6 @@ variable "aks_map_nodes" {
   }))
 }
 
-## ------------------------------------
-##  Azure ServiceBus Variables
-## ------------------------------------
-
-variable "servicebus_config" {
-  description = "Configuration for Azure ServiceBus"
-  type = object({
-    name               = string
-    sku                = string
-    local_auth_enabled = bool
-  })
-}
-
-variable "servicebus_queues" {
-  description = "A list of queues which should be created within the ServiceBus."
-  type = map(object({
-    name                                    = string
-    max_delivery_count                      = number
-    enable_batched_operations               = bool
-    requires_duplicate_detection            = bool
-    requires_session                        = bool
-    dead_lettering_on_message_expiration    = bool
-    enable_partitioning                     = bool
-    enable_express                          = bool
-    max_message_size_in_kilobytes           = optional(number, null)
-    default_message_ttl                     = string
-    forward_to                              = optional(string, null)
-    forward_dead_lettered_messages_to       = optional(string, null)
-    auto_delete_on_idle                     = optional(string, null)
-    max_size_in_megabytes                   = number
-    lock_duration                           = string
-    duplicate_detection_history_time_window = string
-    status                                  = string
-  }))
-  default = {}
-
-}
 
 /* 
 ## ------------------------------------
