@@ -2,7 +2,7 @@
 ## --------------------------------------------------------
 ##  Network - Main
 ## --------------------------------------------------------
-
+/* 
 module "vnet_main_network" {
   source = "../modules/network"
 
@@ -18,7 +18,7 @@ module "vnet_main_network" {
 
   tags = var.tags
 }
-
+ */
 ## --------------------------------------------------------
 ##  NETWORK PEERINGS - Create peering from spoke to transit VNet
 ## --------------------------------------------------------

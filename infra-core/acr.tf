@@ -5,7 +5,7 @@
 ## --------------------------------------------------------
 ##  Azure Contanier Registry - ACR
 ## --------------------------------------------------------
-/*  
+/*   
 module "acr_main" {
   source = "../modules/container-registry"
 

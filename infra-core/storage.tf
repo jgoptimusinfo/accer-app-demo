@@ -2,7 +2,6 @@
 ## --------------------------------------------------------
 ##  Storage - main
 ## --------------------------------------------------------
-
 /* 
 module "storage_main" {
   source = "../modules/storage-account-se"
@@ -19,5 +18,4 @@ module "storage_main" {
   access_tier                   = var.storage_account_config.access_tier
 
   tags = var.tags
-} 
-*/
+}  */
