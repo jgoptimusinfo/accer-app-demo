@@ -3,7 +3,6 @@
 ##  Storage - main
 ## --------------------------------------------------------
 
-/* 
 module "storage_main" {
   source = "../modules/storage-account-se"
 
@@ -20,4 +19,3 @@ module "storage_main" {
 
   tags = var.tags
 } 
-*/
