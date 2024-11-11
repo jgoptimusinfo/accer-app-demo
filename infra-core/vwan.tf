@@ -1,18 +1,3 @@
-resource "azurerm_virtual_wan" "virtual_wan" {
-  name                = "acn-virtual-wan-prd"
-  resource_group_name = module.rg_main_network.name
-  location            = module.rg_main_network.location
-}
-
-resource "azurerm_virtual_hub" "virtual_hub" {
-  name                = "acn-virtual-hub-prd"
-  resource_group_name = module.rg_main_network.name
-  location            = module.rg_main_network.location
-  virtual_wan_id      = azurerm_virtual_wan.virtual_wan.id
-  address_prefix      = "10.200.0.0/22"
-}
-
-
 ## --------------------------------------------------------
 ##  Network - Main
 ## --------------------------------------------------------
@@ -44,4 +29,28 @@ module "vnet_spoke_aks" {
   enable_vpn_gateway = false
 
   tags = var.tags
+}
+
+## --------------------------------------------------------
+##  Virtual WAN
+## --------------------------------------------------------
+
+resource "azurerm_virtual_wan" "virtual_wan" {
+  name                = "acn-virtual-wan-prd"
+  resource_group_name = module.rg_main_network.name
+  location            = module.rg_main_network.location
+}
+
+resource "azurerm_virtual_hub" "virtual_hub" {
+  name                = "acn-virtual-hub-prd"
+  resource_group_name = module.rg_main_network.name
+  location            = module.rg_main_network.location
+  virtual_wan_id      = azurerm_virtual_wan.virtual_wan.id
+  address_prefix      = "10.200.0.0/22"
+}
+
+resource "azurerm_virtual_hub_connection" "spoke_aks_vhub" {
+  name                      = "spoke-aks-vhub"
+  virtual_hub_id            = azurerm_virtual_hub.virtual_hub.id
+  remote_virtual_network_id = module.vnet_spoke_aks.vnet_id
 }
