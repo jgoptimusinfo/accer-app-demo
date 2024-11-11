@@ -1,11 +1,11 @@
 resource "azurerm_virtual_wan" "virtual_wan" {
-  name                = "example-virtualwan"
+  name                = "acn-virtual-wan-prd"
   resource_group_name = module.rg_main_network.name
   location            = module.rg_main_network.location
 }
 
 resource "azurerm_virtual_hub" "virtual_hub" {
-  name                = "example-virtualhub"
+  name                = "acn-virtual-hub-prd"
   resource_group_name = module.rg_main_network.name
   location            = module.rg_main_network.location
   virtual_wan_id      = azurerm_virtual_wan.virtual_wan.id
