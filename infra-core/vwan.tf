@@ -47,6 +47,8 @@ resource "azurerm_virtual_hub" "virtual_hub" {
   location            = module.rg_main_network.location
   virtual_wan_id      = azurerm_virtual_wan.virtual_wan.id
   address_prefix      = "10.200.0.0/22"
+
+
 }
 
 resource "azurerm_virtual_hub_connection" "spoke_aks_vhub" {
@@ -102,5 +104,20 @@ resource "azurerm_firewall_policy_rule_collection_group" "region1-policy1" {
       destination_addresses = ["*"]
       destination_ports     = ["*"]
     }
+  }
+}
+
+## --------------------------------------------------------
+##  Azure Firewall - Roting intent
+## --------------------------------------------------------
+
+resource "azurerm_virtual_hub_routing_intent" "fw_routing_intent" {
+  name           = "acn-routingintent"
+  virtual_hub_id = azurerm_virtual_hub.virtual_hub.id
+
+  routing_policy {
+    name         = "InternetTrafficPolicy"
+    destinations = ["Internet"]
+    next_hop     = azurerm_firewall.virtual_wan_fw01.id
   }
 }
