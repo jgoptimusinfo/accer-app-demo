@@ -1,7 +1,9 @@
+
 ## --------------------------------------------------------
-##  Network - Main
+##  Virtual WAN - Resource Testings
 ## --------------------------------------------------------
- 
+
+/* 
 module "vnet_spoke_aks" {
   source = "../modules/network"
 
@@ -121,3 +123,4 @@ resource "azurerm_virtual_hub_routing_intent" "fw_routing_intent" {
     next_hop     = azurerm_firewall.virtual_wan_fw01.id
   }
 }
+ */
