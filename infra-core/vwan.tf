@@ -54,3 +54,53 @@ resource "azurerm_virtual_hub_connection" "spoke_aks_vhub" {
   virtual_hub_id            = azurerm_virtual_hub.virtual_hub.id
   remote_virtual_network_id = module.vnet_spoke_aks.vnet_id
 }
+
+## --------------------------------------------------------
+##  Azure Firewall
+## --------------------------------------------------------
+
+resource "azurerm_firewall" "virtual_wan_fw01" {
+  name                = "acn-vwan-fw01"
+  location            = var.location
+  resource_group_name = module.rg_main_network.name
+  sku_tier            = "Premium"
+  sku_name            = "AZFW_Hub"
+  firewall_policy_id  = azurerm_firewall_policy.fw-pol01.id
+  virtual_hub {
+    virtual_hub_id = azurerm_virtual_hub.virtual_hub.id
+    public_ip_count = 1
+  }
+}
+
+
+## --------------------------------------------------------
+##  Azure Firewall - Policy
+## --------------------------------------------------------
+
+resource "azurerm_firewall_policy" "fw-pol01" {
+  name                = "fw-pol01"
+  resource_group_name = module.rg_main_network.name
+  location            = var.location
+}
+
+## --------------------------------------------------------
+##  Azure Firewall - Policy - Rule Collection Group
+## --------------------------------------------------------
+
+resource "azurerm_firewall_policy_rule_collection_group" "region1-policy1" {
+  name               = "fw-pol01-rules"
+  firewall_policy_id = azurerm_firewall_policy.fw-pol01.id
+  priority           = 100
+  network_rule_collection {
+    name     = "network_rules1"
+    priority = 100
+    action   = "Allow"
+    rule {
+      name                  = "network_rule_collection1_rule1"
+      protocols             = ["TCP", "UDP", "ICMP"]
+      source_addresses      = ["*"]
+      destination_addresses = ["*"]
+      destination_ports     = ["*"]
+    }
+  }
+}
