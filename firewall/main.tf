@@ -30,7 +30,7 @@ resource "azurerm_firewall" "virtual_wan_fw01" {
   firewall_policy_id  = azurerm_firewall_policy.fw_pol01.id
   virtual_hub {
     virtual_hub_id = local.virtual_hub_id
-    public_ip_count = 1
+    public_ip_count = 2
   }
 }
 
