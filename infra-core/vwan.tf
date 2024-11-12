@@ -50,6 +50,7 @@ resource "azurerm_virtual_hub" "virtual_hub" {
   address_prefix      = "10.200.0.0/22"
 }
 
+/* 
 resource "azurerm_virtual_hub_connection" "spoke_aks_vhub" {
   name                      = "spoke-aks-vhub"
   virtual_hub_id            = azurerm_virtual_hub.virtual_hub.id
@@ -119,4 +120,4 @@ resource "azurerm_virtual_hub_routing_intent" "fw_routing_intent" {
     destinations = ["Internet"]
     next_hop     = azurerm_firewall.virtual_wan_fw01.id
   }
-}
+} */
