@@ -3,7 +3,6 @@
 ##  Virtual WAN - Resource Testings
 ## --------------------------------------------------------
 
-/* 
 module "vnet_spoke_aks" {
   source = "../modules/network"
 
@@ -49,8 +48,6 @@ resource "azurerm_virtual_hub" "virtual_hub" {
   location            = module.rg_main_network.location
   virtual_wan_id      = azurerm_virtual_wan.virtual_wan.id
   address_prefix      = "10.200.0.0/22"
-
-
 }
 
 resource "azurerm_virtual_hub_connection" "spoke_aks_vhub" {
@@ -123,4 +120,3 @@ resource "azurerm_virtual_hub_routing_intent" "fw_routing_intent" {
     next_hop     = azurerm_firewall.virtual_wan_fw01.id
   }
 }
- */
