@@ -3,7 +3,7 @@
 ## --------------------------------------------------------
 
 locals { 
-  firewall_resource_group_name = "msi-nwsvcs-dev-eus2-rg"
+  firewall_resource_group_name = "accern-nwsvcs-prd-eus2-rg"
   virtual_hub_id = "/subscriptions/3124b81f-32b6-49f2-98d6-7500ef2a165f/resourceGroups/accern-nwsvcs-prd-eus2-rg/providers/Microsoft.Network/virtualHubs/acn-virtual-hub-prd"
 }
 
@@ -12,7 +12,7 @@ locals {
 ## --------------------------------------------------------
 
 resource "azurerm_firewall_policy" "fw_pol01" {
-  name                = "fw-pol01"
+  name                = "acn-vwan-hub-fw-pol01"
   resource_group_name = local.firewall_resource_group_name
   location            = var.location
 }
@@ -39,7 +39,7 @@ resource "azurerm_firewall" "virtual_wan_fw01" {
 ## --------------------------------------------------------
 
 resource "azurerm_virtual_hub_routing_intent" "fw_routing_intent" {
-  name           = "acn-routingintent"
+  name           = "acn-vwan-hub-routingintent"
   virtual_hub_id = local.virtual_hub_id
 
   routing_policy {
@@ -53,8 +53,8 @@ resource "azurerm_virtual_hub_routing_intent" "fw_routing_intent" {
 ##  Azure Firewall - Policy - Rule Collection Group
 ## --------------------------------------------------------
 
-resource "azurerm_firewall_policy_rule_collection_group" "region1_policy1" {
-  name               = "fw-pol01-rules"
+resource "azurerm_firewall_policy_rule_collection_group" "policy_rule_01" {
+  name               = "acn-vwan-hub-fw-pol01-rules"
   firewall_policy_id = azurerm_firewall_policy.fw_pol01.id
   priority           = 100
   network_rule_collection {
