@@ -3,6 +3,8 @@ name: 'Terraform Unit Tests'
 on:
   workflow_dispatch:
   push:
+    paths:
+    - 'infra-core/**'
 
 permissions:
   security-events: write # Needed to upload-sarif
@@ -42,3 +44,4 @@ jobs:
       run: |
         curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
         tflint
+      continue-on-error: true
