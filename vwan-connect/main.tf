@@ -14,7 +14,7 @@ locals {
 # Spoke PRD-AKS to Virtual Hub
  
 resource "azurerm_virtual_hub_connection" "spoke_prd_aks_vhub" {
-  name                      = "spoke-prd-aks-vhub"
+  name                      = "spoke-prd-aks-hub"
   virtual_hub_id            = local.virtual_hub_id
   remote_virtual_network_id = local.spoke_prd_aks_vnet_id
 }
