@@ -1,4 +1,4 @@
-name: 'Terraform Plan/Apply - vwan Connection'
+name: 'VWAN Conn - Terraform Plan/Apply'
 
 on:
   workflow_dispatch:

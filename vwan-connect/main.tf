@@ -2,8 +2,6 @@
 ##  locals
 ## --------------------------------------------------------
 
-data "azurerm_client_config" "current" {}
-
 locals {
   virtual_hub_id = "/subscriptions/3124b81f-32b6-49f2-98d6-7500ef2a165f/resourceGroups/accern-nwsvcs-prd-eus2-rg/providers/Microsoft.Network/virtualHubs/acn-virtual-hub-prd"
   spoke_prd_aks_vnet_id = "/subscriptions/3124b81f-32b6-49f2-98d6-7500ef2a165f/resourceGroups/accern-nwsvcs-prd-eus2-rg/providers/Microsoft.Network/virtualNetworks/acn-spoke-prd-aks-vnet"

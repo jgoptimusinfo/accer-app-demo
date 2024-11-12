@@ -1,4 +1,4 @@
-name: 'Terraform Unit Tests - VWAN Connection'
+name: 'VWAN Conn - Terraform Tests'
 
 on:
   workflow_dispatch:
