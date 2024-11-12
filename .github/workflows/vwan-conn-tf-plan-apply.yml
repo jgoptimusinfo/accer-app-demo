@@ -87,7 +87,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: tfplan
-        path: ./infra-core/tfplan
+        path: ./vwan-connect/tfplan
         
     # Create string output of Terraform Plan
     - name: Create String Output
@@ -136,7 +136,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./infra-core
+        working-directory: ./vwan-connect
     environment: production
     env:
       ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
@@ -167,7 +167,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: tfplan
-        path: ./infra-core/
+        path: ./vwan-connect/
 
     # Terraform Apply
     - name: Terraform Apply
