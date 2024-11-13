@@ -81,7 +81,7 @@ module "rule_collection_group" {
           description           = "DNAT rule for inbound https traffic"
           translated_address    = "172.16.1.5"
           translated_port       = 443
-          # source_addresses      = ["*"]
+          source_addresses      = ["*"]
           destination_addresses = ["172.172.2.238/32"]
           destination_ports     = ["443"]
           protocols             = ["TCP"]
