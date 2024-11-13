@@ -1,7 +1,7 @@
 output "firewall_resources" {
   value = module.firewall.resource.virtual_hub
 }
-
+/* 
 output "firewall_policy" {
   value = module.firewall_policy.resource
 }
@@ -20,4 +20,4 @@ output "firewall_public_ip_1" {
 
 output "firewall_public_ip_2" {
   value = module.firewall.resource.virtual_hub.public_ip_addresses[1]
-}
+} */
