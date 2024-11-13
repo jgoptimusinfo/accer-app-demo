@@ -70,6 +70,25 @@ module "rule_collection_group" {
       ]
     }
   ]
+  firewall_policy_rule_collection_group_nat_rule_collection = [
+    {
+      action   = "Dnat"
+      name     = "NatRuleCollection"
+      priority = 800
+      rule = [
+        {
+          name                  = "DNATRule"
+          description           = "DNAT rule for inbound https traffic"
+          translated_address    = "172.16.1.5"
+          translated_port       = 443
+          source_addresses      = ["*"]
+          destination_addresses = ["172.172.2.172"]
+          destination_ports     = ["443"]
+          protocols             = ["TCP"]
+        }
+      ]
+    }
+  ]
 }
 
 ## --------------------------------------------------------
