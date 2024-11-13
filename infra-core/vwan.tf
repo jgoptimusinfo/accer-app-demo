@@ -3,7 +3,7 @@
 ##  Virtual WAN - Resource Testings
 ## --------------------------------------------------------
 
-/* 
+ 
 module "vnet_spoke_aks" {
   source = "../modules/network"
 
@@ -57,6 +57,8 @@ resource "azurerm_virtual_hub_connection" "spoke_aks_vhub" {
   virtual_hub_id            = azurerm_virtual_hub.virtual_hub.id
   remote_virtual_network_id = module.vnet_spoke_aks.vnet_id
 }
+
+/*
 
 ## --------------------------------------------------------
 ##  Azure Firewall
