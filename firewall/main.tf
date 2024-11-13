@@ -74,7 +74,7 @@ module "rule_collection_group" {
     {
       action   = "Dnat"
       name     = "NatRuleCollection"
-      priority = 800
+      priority = 200
       rule = [
         {
           name                  = "DNATRule"
