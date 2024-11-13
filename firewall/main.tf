@@ -74,12 +74,12 @@ module "rule_collection_group" {
     {
       action   = "Dnat"
       name     = "NatRuleCollection"
-      priority = 200
+      priority = 100
       rule = [
         {
           name                  = "DNATRule"
           description           = "DNAT rule for inbound https traffic"
-          translated_address    = "172.16.1.5"
+          translated_address    = "8.8.8.8"
           translated_port       = 443
           source_addresses      = ["*"]
           destination_addresses = ["172.172.2.172"]
