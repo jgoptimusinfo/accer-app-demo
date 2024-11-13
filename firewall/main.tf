@@ -76,8 +76,8 @@ module "rule_collection_group" {
 
 module "firewall" {
   
-  source             = "Azure/avm-res-network-firewall/azurerm"
-  version            = "0.3.0"
+  source  = "Azure/avm-res-network-azurefirewall/azurerm"
+  version = "0.3.0"
   enable_telemetry   = false
 
   name                = "acn-vwan-fw01"
