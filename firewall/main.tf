@@ -20,6 +20,8 @@ module "firewall_policy" {
   name                = "acn-vwan-hub-fw-pol01"
   location            = var.location
   resource_group_name = local.firewall_resource_group_name
+  
+  tags = var.tags
 }
 
 module "rule_collection_group" {
@@ -92,6 +94,8 @@ module "firewall" {
     public_ip_count = 2
   }
   firewall_policy_id = module.firewall_policy.resource.id
+
+  tags = var.tags
 }
 
 ## --------------------------------------------------------
