@@ -70,25 +70,25 @@ module "rule_collection_group" {
       ]
     }
   ]
-  firewall_policy_rule_collection_group_nat_rule_collection = [
-    {
-      action   = "Dnat"
-      name     = "NatRuleCollection"
-      priority = 100
-      rule = [
-        {
-          name                  = "DNATRule"
-          description           = "DNAT rule for inbound https traffic"
-          translated_address    = "172.16.1.5"
-          translated_port       = 443
-          source_addresses      = ["*"]
-          destination_addresses = module.firewall.resource.virtual_hub.public_ip_addresses[0].ip_address
-          destination_ports     = ["443"]
-          protocols             = ["TCP"]
-        }
-      ]
-    }
-  ]
+  # firewall_policy_rule_collection_group_nat_rule_collection = [
+  #   {
+  #     action   = "Dnat"
+  #     name     = "NatRuleCollection"
+  #     priority = 100
+  #     rule = [
+  #       {
+  #         name                  = "DNATRule"
+  #         description           = "DNAT rule for inbound https traffic"
+  #         translated_address    = "172.16.1.5"
+  #         translated_port       = 443
+  #         source_addresses      = ["*"]
+  #         destination_addresses = module.firewall.resource.virtual_hub.public_ip_addresses[0].ip_address
+  #         destination_ports     = ["443"]
+  #         protocols             = ["TCP"]
+  #       }
+  #     ]
+  #   }
+  # ]
 }
 
 ## --------------------------------------------------------
