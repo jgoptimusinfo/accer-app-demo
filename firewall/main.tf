@@ -1,7 +1,7 @@
 ## --------------------------------------------------------
 ##  locals
 ## --------------------------------------------------------
-
+/* 
 locals { 
   firewall_resource_group_name = "accern-nwsvcs-prd-eus2-rg"
   virtual_hub_id = "/subscriptions/3124b81f-32b6-49f2-98d6-7500ef2a165f/resourceGroups/accern-nwsvcs-prd-eus2-rg/providers/Microsoft.Network/virtualHubs/acn-virtual-hub-prd"
@@ -116,6 +116,9 @@ module "firewall" {
 
   tags = var.tags
 }
+
+ */
+## =========================================================
 
 ## --------------------------------------------------------
 ##  Azure Firewall - OLD Code
