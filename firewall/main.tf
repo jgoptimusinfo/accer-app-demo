@@ -88,10 +88,10 @@ module "firewall" {
   firewall_sku_name   = "AZFW_Hub"
   firewall_zones      = ["1"] #["1", "2", "3"]
   firewall_virtual_hub = {
-    virtual_hub_id  = azurerm_virtual_hub.vhub.id
+    virtual_hub_id  = local.virtual_hub_id
     public_ip_count = 2
   }
-  firewall_policy_id = module.fw_policy.resource.id
+  firewall_policy_id = module.firewall_policy.resource.id
 }
 
 ## --------------------------------------------------------
