@@ -1,9 +1,9 @@
 output "firewall_resources" {
-  value = module.firewall.resource.virtual_hub
+  value = module.firewall.resource.virtual_hub[*]
 }
 
 output "firewall_private_ip" {
-  value = module.firewall.resource.virtual_hub.firewall.firewall_resources[0].private_ip_address
+  value = module.firewall.resource.virtual_hub[*].firewall.firewall_resources[0].private_ip_address
 }
 
 # output "firewall_public_ip" {
