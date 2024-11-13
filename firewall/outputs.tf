@@ -3,7 +3,7 @@ output "firewall_resources" {
 }
 
 output "firewall_private_ip" {
-  value = module.firewall.resource.virtual_hub.firewall_resources.private_ip_address
+  value = module.firewall.resource.virtual_hub.firewall.private_ip_address
 }
 
 # output "firewall_public_ip" {
