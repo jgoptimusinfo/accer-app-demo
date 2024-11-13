@@ -1,4 +1,4 @@
-
+/* 
 output "firewall_resources" {
   value = module.firewall.resource.virtual_hub[*]
 }
@@ -13,4 +13,4 @@ output "firewall_resources_public_ip_one" {
 
 output "firewall_resources_public_ip_two" {
   value = module.firewall.resource.virtual_hub[*].public_ip_addresses[1]
-}
+} */
